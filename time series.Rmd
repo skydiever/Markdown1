@@ -39,4 +39,4 @@ plot.ts(CO2, main = expression(paste("Time Series of CO"[2], "Data")), ylab = ex
 In order to use the simulate_dataset_ts function we had to first import the data, then turn it into a dataframe and then create a column called year and then feed these two variables into the function.
 
 
-
+# add line
