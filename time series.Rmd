@@ -1,0 +1,42 @@
+
+---
+Title: Markdown Doc. #1
+
+```{r}
+x1 = arima.sim(model = list(ar = c(0.4,0,0)),1000)
+
+plot.ts(x1, main = "Time Series of an Ar(1) model", ylab = "AR(1)", col = "red")
+```
+
+```{r}
+x2 = arima.sim(model = list( ma= c(0,0,1)),1000)
+
+plot.ts(x2, main = "Time Series of an MA(1) model", ylab = "MA(1)", col = "blue")
+```
+
+
+```{r}
+x3 = arima.sim(model = list(order(1,0,1)),1000)
+plot.ts(x3, main= "Time Series of and ARMA(1,1)", ylab = "ARMA(1,1)")
+```
+
+The three graphs above are: AR(1), MA(2), and an ARMA(1,0,1) processes respectively. They were generated using the arima.sim function which generates an autoregressive, moving average or auto-regressive moving average model depending on what the inputs are.
+
+```{r}
+library(fakeR)
+data(co2)
+
+co2 <- data.frame(co2)
+co2$year <- c(1:nrow(co2))
+
+CO2 <- simulate_dataset_ts(co2, cluster ="co2",time.variable = "year")
+
+plot.ts(CO2, main = expression(paste("Time Series of CO"[2], "Data")), ylab = expression(paste("CO"[2], " in ppm")))
+
+```
+
+
+In order to use the simulate_dataset_ts function we had to first import the data, then turn it into a dataframe and then create a column called year and then feed these two variables into the function.
+
+
+
