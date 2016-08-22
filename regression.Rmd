@@ -1,0 +1,107 @@
+---
+title: Regression In R Tutorial
+---
+Univariate Regression
+
+```{r}
+
+airfreight = read.table('airfreight.txt', header = TRUE)
+airfreight = data.frame(airfreight)
+
+```
+---
+Then we want to create a linear model using the lm(y~x, data) function in R. Using the data imported above we first set Ampules equal to our dependent variable (y) and route equal to our independent variable (x).
+---
+```{r}
+y = airfreight[,1]
+x = airfreight[,2]
+```
+
+---
+Now we plug in the variables which represent the columns in the airfreight dataset where each y corresponds to each x. By calling the variable reg the model summary appears.
+
+---
+
+```{r}
+reg = lm(y~x)
+reg
+```
+In order to plot the data use the plot function and then to draw the regression line of the model that use generated use the abline() function which and plug in the linear model with variables y~x into the lm() as shown below.
+
+```{r}
+plot(y~x, xlab = "Route", ylab = "Ampules ")
+abline(lm(y ~ x))
+```
+---
+Multivariate Regression:
+First load the data by using the read.table() function. Then access each column and set equal to a variable.
+
+Then we can plot a scatterplot matrix to see if there is a linear relationship between each variable while holding the others fixed. The variable name that is in each row is the dependent variable. 
+
+
+```{r}
+multi = read.table("multi.txt", header = TRUE)
+y = multi[,1]
+x1 = multi[,2]
+x2 = multi[,3]
+x3 = multi[,4]
+x4 = multi[,5]
+plot(multi)
+```
+```{r}
+reg2 = lm(y ~ x1 + x2 + x3 + x4, data = multi)
+summary(reg2)
+```
+---
+Another way to check for multi-collinearity is to by using the cor(variable1, variable2, method = "pearson") function.
+
+Degree of correlation:
+
+1. Perfect: If value is near plus/minus 1
+
+2. High:  If value is between plus/minus .50 and plus/minus 1
+
+3. Moderate: If value is between plus/minus 0.30
+and plus/minus .49
+
+4. Low: If the value is below plus/ minus .29.
+
+5. None: When the value is zero.
+
+(http://www.statisticssolutions.com/pearsons-correlation-coefficient/)
+---
+```{r}
+cor(x1, x2, method = "pearson")
+cor(x1, x3, method = "pearson")
+cor(x1, x4, method = "pearson")
+cor(x2, x3, method = "pearson")
+cor(x2, x4, method = "pearson")
+cor(x3, x4, method = "pearson")
+```
+---
+
+When there is multi-collinearity in the variables we can use a method called stepwise regression. We will use the step() function which will start with the null and test every model up to the full model. By typing in "forward" for method we are starting with the null and ending with the full model. The AIC criterion where the lowest AIC value corresponds to the best estimate of a multi-variate regression model.
+
+```{r}
+null = lm(Y~1, data = multi)
+full = lm(Y~., data = multi)
+
+step(null, scope = list(lower = null, upper = full), direction = "forward")
+```
+---
+As we can see from the output above the model with the lowest AIC value is the model 
+Y = X3 + X1 + X4.
+
+Disclosure: Using the AIC criterion does not give the optimal model, it is used as a way to get an estimate of a model. There are more rigorous ways of finding a better model.
+
+sources for this tutorial are:
+1.) 
+http://www.stat.columbia.edu/~martin/W2024/R10.p
+df
+
+2.)
+http://www.dummies.com/how-to/content/how-to-interpret-a-correlation-coefficient-r.html
+
+
+
+
