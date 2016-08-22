@@ -96,11 +96,10 @@ Disclosure: Using the AIC criterion does not give the optimal model, it is used 
 
 sources for this tutorial are:
 1.) 
----
-http://www.stat.columbia.edu/~martin/W2024/R10.pdf
+http://www.stat.columbia.edu/~martin/W2024/R10.p
+df
 
 2.)
----
 http://www.dummies.com/how-to/content/how-to-interpret-a-correlation-coefficient-r.html
 
 
