@@ -1,0 +1,28 @@
+---
+title: "Functions (basic)"
+author: "Nick"
+date: "August 22, 2016"
+---
+
+Here is a function that uses AIC criterion to come up with a model. Select the model that has the lowest AIC value associated with it
+```{r}
+null = lm(Y~1, data = multi)
+full = lm(Y~., data = multi)
+
+model_selection <- function(x, model1, model2) {
+  data = x
+  null = model1 
+  full = model2
+  step(null, scope = list(lower = null, upper = full), direction = "forward")
+  
+  cor(data)
+  
+}
+
+m1 = lm(Y~1, data = multi)
+m2 = lm(Y~., data = multi)
+
+model_selection(multi, m1,m2)
+```
+---
+Here is a function that 

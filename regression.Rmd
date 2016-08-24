@@ -4,7 +4,6 @@ title: Regression In R Tutorial
 Univariate Regression
 
 ```{r}
-
 airfreight = read.table('airfreight.txt', header = TRUE)
 airfreight = data.frame(airfreight)
 
@@ -53,7 +52,7 @@ reg2 = lm(y ~ x1 + x2 + x3 + x4, data = multi)
 summary(reg2)
 ```
 ---
-Another way to check for multi-collinearity is to by using the cor(variable1, variable2, method = "pearson") function.
+Another way to check for multi-collinearity is by using the cor(variable1, variable2, method = "pearson") function.
 
 Degree of correlation:
 

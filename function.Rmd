@@ -1,0 +1,39 @@
+---
+title: "Functions"
+author: "Nick"
+date: "August 22, 2016"
+output: html_document
+---
+
+This function takes in that finds the smallest value in a for loop.
+
+```{r}
+x = data.frame(1,2,3,4,5)
+find_smallest <- function(data) {
+  x = data
+  smallest = x[1]
+  for (num in x) {
+    if(smallest > num) 
+      smallest = num
+    
+  }
+  print(smallest)}
+
+find_smallest(x)
+```
+---
+Here is a function that calculates the Average sum of squares
+```{r}
+avgSumOfSquares <- function(data) {
+  total = 0
+  x = data
+  for (num in x) {
+    total = total + num**2
+  }
+total = total / length(x)
+print(total)  }
+
+avgSumOfSquares(x)
+```
+
+
